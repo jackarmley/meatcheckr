@@ -2,4 +2,4 @@
  * Demo, bro
  */
 
-var autoComp = new autocomplete('#meatcheckr',suggestions,'.meatcheckr');
+var autoComp = new meatcheckr('#meatcheckr',suggestions,'.meatcheckr');

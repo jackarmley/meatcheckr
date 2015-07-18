@@ -14,7 +14,7 @@
 
 // Provide an input element
 // and an array of words to search
-function autocomplete (input,list,appendTo) {
+function meatcheckr (input,list,appendTo) {
 
     // Set some vars, bro
     _self = this;
@@ -44,7 +44,7 @@ function autocomplete (input,list,appendTo) {
 
 // Check if the value of the 'input' element matches
 // any of the words in the 'list' array
-autocomplete.prototype.checkMatch = function() {
+meatcheckr.prototype.checkMatch = function() {
 
     // Record the character that has been typed
     var inputVal = _self.input.value;
@@ -82,7 +82,7 @@ autocomplete.prototype.checkMatch = function() {
 };
 
 // Define autocomplete menu container
-autocomplete.prototype.suggestionsContainer = function() {
+meatcheckr.prototype.suggestionsContainer = function() {
     var markup = document.createElement('ul');
     markup.className = 'meatcheckr-suggestions';
     _self.appendTo.appendChild(markup);
@@ -90,7 +90,7 @@ autocomplete.prototype.suggestionsContainer = function() {
 };
 
 // Populate autocomplete menu
-autocomplete.prototype.suggestionsItem = function() {
+meatcheckr.prototype.suggestionsItem = function() {
     var suggestionsContent = '';
     for ( var i=0;i<_self.matchList.length;i++) {
         suggestionsContent += '<li class="meatcheckr-suggestions-item"';
@@ -107,6 +107,6 @@ autocomplete.prototype.suggestionsItem = function() {
 };
 
 // Clear autocomplete menu
-autocomplete.prototype.clearSuggestionsContainer = function() {
+meatcheckr.prototype.clearSuggestionsContainer = function() {
     _self.suggestionsElem.innerHTML = '';
 };
