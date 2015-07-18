@@ -1,0 +1,165 @@
+/**
+ * #meatcheckr styles
+ * @author Jack Armley
+ */
+
+// Set some general properties
+// @type {Map}
+$props:(
+    maxw: 60rem,
+    basefont: 'Lato',
+    strongfont: 'Montserrat'
+);
+
+// Set some colours
+// @type {Color}
+$rawmeat: #AE1C30;
+$default: darken($rawmeat,20%);
+$light: #fff;
+
+// Tie colours to map
+// @type {Map}
+$colours:(
+    base: $default,
+    highlight: $light,
+    bg: $rawmeat
+);
+
+// Color getter
+// @param $value {String}
+@function getcolor($value){
+    @return map-get($colours,$value);
+}
+
+// Property getter
+// @param $value {String}
+@function getprop($value){
+    @return map-get($props,$value);
+}
+
+$mediaqueries:(
+    steak: getprop('maxw')
+);
+
+@mixin mq( $value:map-get($mediaqueries,steak) ){
+    @media screen and (min-width: $value) {
+        @content;
+    }
+}
+
+/**
+ * Outer styles
+ */
+
+@import url('http://fonts.googleapis.com/css?family=Montserrat:700|Lato:400,700,900');
+
+*{
+    box-sizing: border-box;
+}
+html{
+    background-color: getcolor('bg');
+    font-size: 62.5%;
+}
+body{
+    width: auto;
+    margin: auto;
+    color: getcolor('base');
+    font: 400 normal 160%/1.5em getprop('basefont'), sans-serif;
+    @include mq{
+        max-width: getprop('maxw');
+    }
+}
+p{
+    margin: 0 0 1em;
+}
+
+/**
+ * Intro styles
+ */
+.intro{
+    padding: 2rem;
+    background-color: lighten( getcolor('bg') , 10% );
+    text-align: center;
+    h1{
+        margin: 0 0 .5em;
+        color: getcolor('highlight');
+        font-size: 1.8em;
+    }
+    > :last-child{
+        margin-bottom: 0;
+    }
+}
+
+/**
+ * Meatcheckr component styles
+ */
+.meatcheckr{
+
+    /**
+     * User input form
+     */
+    &-form{
+        padding: 2rem;
+        @include mq{
+            padding-right: 0;
+            padding-left: 0;
+        }
+        label, input{
+            display: block;
+        }
+        label{
+            position: absolute;
+            width: 0;
+            height: 0;
+            text-indent: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        input{
+            width: 100%;
+            padding: 2rem;
+            border: none;
+            background-color: darken( getcolor('bg') , 10% );
+            color: getcolor('highlight');
+            font-size: 1.5em;
+            font-family: getprop('strongfont'), sans-serif;
+
+            &::-webkit-input-placeholder {
+               color: getcolor('highlight');
+               opacity: 1;
+            }
+            &::-moz-placeholder {
+               color: getcolor('highlight');
+               opacity: 1;
+            }
+            &:focus{
+                outline: none;
+            }
+        }
+    }
+
+    /**
+     * Suggestions container
+     */
+    &-suggestions{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        &-item{
+            padding: 1rem 2rem;
+            border-bottom: .5rem solid darken( getcolor('bg') , 5% );
+            &-heading{
+                margin: 0 0 .25em;
+                color: getcolor('highlight');
+                font-family: getprop('strongfont');
+                font-size: 1.2em;
+            }
+            p{
+                margin-bottom: 0;
+            }
+                span{
+                    font-weight: 900;
+                }
+        }
+    }
+}
