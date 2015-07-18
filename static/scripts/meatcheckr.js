@@ -6,12 +6,6 @@
  * Object Oriented JavaScript
  */
 
-/**
- * Todo:
- * - Add list, appendTo and a classPrefix arg
- *   to a config object.
- */
-
 // Provide an input element
 // and an array of words to search
 function meatcheckr (input,list,appendTo) {
