@@ -7,6 +7,7 @@
 // Include dependancies
 var
     gulp = require('gulp'),
+    data = require('gulp-data'),
     sass = require('gulp-ruby-sass'),
     jade = require('gulp-jade'),
     autoprefixer = require('gulp-autoprefixer'),
@@ -40,12 +41,16 @@ gulp.task('styles', function(){
 });
 
 // Markup
-gulp.task('markup', function(){
-    gulp.src(assets.markup + 'jade/**/*.jade')
+gulp.task('markup', function() {
+  return gulp.src(assets.markup + 'jade/*.jade')
+    .pipe(data(function(file) {
+      //return require('./examples/' + path.basename(file.path) + '.json');
+      return require('./' + assets.markup + '/jade/locals.json');
+    }))
     .pipe(jade({
         pretty: true
     }))
-    .pipe( gulp.dest('./') )
+    .pipe(gulp.dest('./'));
 });
 
 // Server

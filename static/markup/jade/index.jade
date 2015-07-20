@@ -2,19 +2,22 @@ doctype html
 meta(charset="utf-8")
 html
     head
-        title #meatcheckr
+        title= locals.title
         link(rel="stylesheet" href="./static/styles/styles.css")
     body
-        .intro
-            h1 #meatcheckr
-            p.
-                Opened some meat? Check how long 'till
-                it's unsafe to eat.
-        .meatcheckr
-            .meatcheckr-form
-                label(for="meatcheckr").
-                    I've just opened some meat. It's&hellip;
-                input(type="search" id="meatcheckr" placeholder="I've just opened some...")
+        main(role="main").meatcheckr
+            header(role="banner").meatcheckr-header
+                h1.meatcheckr-logo
+                    -for(var i=0;i<locals.title.length;i++)
+                        span= locals.title[i]
+            != locals.watt
+            section.meatcheckr-form
+                form
+                    label(for="meatcheckr").
+                        I've just opened some meat. It's&hellip;
+                    input(type="search" id="meatcheckr" placeholder="I've just opened some...")
+            footer.meatcheckr-footer(role="contentinfo")
+                p= locals.tagline
         script(src="./static/scripts/meat-suggestions.js")
         script(src="./static/scripts/meatcheckr.js")
         script(src="./static/scripts/app.js")

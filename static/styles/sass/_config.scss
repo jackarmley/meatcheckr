@@ -1,0 +1,49 @@
+////
+//// #meatcheckr
+//// Config styles
+//// @author Jack Armley
+////
+
+// Set some general properties
+// @type {Map}
+$props:(
+    maxw: 60rem,
+    basefont: 'Lato',
+    strongfont: 'Montserrat'
+);
+
+// Set some colours
+// @type {Color}
+$rawmeat: #AE1C30;
+$default: darken($rawmeat,20%);
+$light: #fff;
+
+// Tie colours to map
+// @type {Map}
+$colours:(
+    base: $default,
+    highlight: $light,
+    bg: $rawmeat
+);
+
+// Color getter
+// @param $value {String}
+@function getcolor($value){
+    @return map-get($colours,$value);
+}
+
+// Property getter
+// @param $value {String}
+@function getprop($value){
+    @return map-get($props,$value);
+}
+
+$mediaqueries:(
+    steak: getprop('maxw')
+);
+
+@mixin mq( $value:map-get($mediaqueries,steak) ){
+    @media screen and (min-width: $value) {
+        @content;
+    }
+}
