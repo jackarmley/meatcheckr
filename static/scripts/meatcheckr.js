@@ -6,18 +6,44 @@
  * Object Oriented JavaScript
  */
 
-// Provide an input element
-// and an array of words to search
-function meatcheckr (input,list,appendTo) {
+// Constructor function
+// @param {String} - Input element
+// @param {Object} - Config options
+function meatcheckr (input,options) {
 
     // Set some vars, bro
     _self = this;
     _self.input = document.querySelector(input);
-    _self.list = list;
-    _self.appendTo = document.querySelector(appendTo) || _self.input.parentNode;
+    _self.menuLocation = _self.input.parentNode;
+    _self.options = options || {
+        data : [
+            {
+                meat : 'sample',
+                daysLeft : 1,
+                message : 'Sample message'
+            }
+        ],
+        appendMenuToElement : false,
+        limit : false
+    }
     _self.match = false;
     _self.matchList = [];
-    _self.suggestionsElem = _self.suggestionsContainer();
+
+    // Initialise the meat
+    _self.init();
+
+}
+
+// Kick things off
+meatcheckr.prototype.init = function() {
+
+    // Before checking for matches, append the suggestions container
+    // If appendMenuToElement has been specified,
+    // then override the default menuLocation option
+    if( _self.options.appendMenuToElement ){
+        _self.menuLocation = document.querySelector(_self.options.appendMenuToElement);
+    }
+    _self.suggestionsElem = _self.suggestionsContainer( _self.menuLocation );
 
     // On keyup, check for matches
     _self.input.addEventListener('keyup',function(){
@@ -28,13 +54,13 @@ function meatcheckr (input,list,appendTo) {
         // populate dropdown markup
         // else clear it
         if( _self.checkMatch() ){
-            _self.suggestionsItem();
+            _self.suggestionsItem( _self.options.limit );
         }else{
             _self.clearSuggestionsContainer();
         }
 
     });
-}
+};
 
 // Check if the value of the 'input' element matches
 // any of the words in the 'list' array
@@ -53,8 +79,8 @@ meatcheckr.prototype.checkMatch = function() {
     // If typed string matches
     // one of the match words,
     // push matching words to matchList
-    for(var i=0 ; i<_self.list.length ; i++){
-        matchItem = _self.list[i];
+    for(var i=0 ; i<_self.options.data.length ; i++){
+        matchItem = _self.options.data[i];
         matchWord = matchItem.meat;
         matchStr = matchWord.slice(0,inputLen);
         if ( inputVal === matchStr && inputVal !== '' ) {
@@ -76,17 +102,18 @@ meatcheckr.prototype.checkMatch = function() {
 };
 
 // Define autocomplete menu container
-meatcheckr.prototype.suggestionsContainer = function() {
+meatcheckr.prototype.suggestionsContainer = function( location ) {
     var markup = document.createElement('ul');
     markup.className = 'meatcheckr-suggestions';
-    _self.appendTo.appendChild(markup);
+    location.appendChild(markup);
     return markup;
 };
 
 // Populate autocomplete menu
-meatcheckr.prototype.suggestionsItem = function() {
+meatcheckr.prototype.suggestionsItem = function( limit ) {
     var suggestionsContent = '';
-    for ( var i=0;i<_self.matchList.length;i++) {
+    var limit = limit || _self.matchList.length;
+    for ( var i=0;i<limit;i++) {
         suggestionsContent += '<li class="meatcheckr-suggestions-item"';
         suggestionsContent += ' data-suggestion="' + _self.matchList[i].meat + '">';
         suggestionsContent += '<h2 class="meatcheckr-suggestions-item-heading">' + _self.matchList[i].meat + '</h2>';
