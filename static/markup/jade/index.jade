@@ -4,13 +4,13 @@ html
     head
         title= locals.title
         link(rel="stylesheet" href="./static/styles/styles.css")
+        meta(name='viewport', content='width=device-width,scale=1')
     body
         main(role="main").meatcheckr
             header(role="banner").meatcheckr-header
                 h1.meatcheckr-logo
                     -for(var i=0;i<locals.title.length;i++)
                         span= locals.title[i]
-            != locals.watt
             section.meatcheckr-form
                 form
                     label(for="meatcheckr").

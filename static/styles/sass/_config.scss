@@ -8,22 +8,25 @@
 // @type {Map}
 $props:(
     maxw: 60rem,
-    basefont: 'Lato',
-    strongfont: 'Montserrat'
+    basefont: 'League Spartan',
+    strongfont: 'League Spartan'
 );
 
 // Set some colours
 // @type {Color}
-$rawmeat: #AE1C30;
-$default: darken($rawmeat,20%);
+$pinksteak: #D55663;
+$venison: #272324;
+$baconrind: #FBD3CD;
 $light: #fff;
 
 // Tie colours to map
 // @type {Map}
 $colours:(
-    base: $default,
+    base: $venison,
+    light: $baconrind,
     highlight: $light,
-    bg: $rawmeat
+    key: $pinksteak,
+    bg: $venison
 );
 
 // Color getter
