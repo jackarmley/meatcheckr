@@ -13,6 +13,7 @@ Essential, clearly. Made to practice my Object Oriented JavaScript
 3. Search for meat. Amazeballs.
 
 ## Todo
+ - Add a proper design!
  - Pass list, appendTo and a classPrefix arg 
  to a config object, instead of as seperate arguments
  - Add something like requirejs to manage scripts
