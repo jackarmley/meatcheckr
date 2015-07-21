@@ -8,6 +8,7 @@
 // @type {Map}
 $props:(
     maxw: 60rem,
+    logolen: 10,
     basefont: 'League Spartan',
     strongfont: 'League Spartan'
 );
@@ -17,16 +18,17 @@ $props:(
 $pinksteak: #D55663;
 $venison: #272324;
 $baconrind: #FBD3CD;
-$light: #fff;
+$dripping: #fff;
 
 // Tie colours to map
 // @type {Map}
 $colours:(
     base: $venison,
     light: $baconrind,
-    highlight: $light,
+    highlight: $baconrind,
     key: $pinksteak,
-    bg: $venison
+    bg: $venison,
+    white: $dripping
 );
 
 // Color getter

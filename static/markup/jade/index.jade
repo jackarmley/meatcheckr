@@ -11,11 +11,12 @@ html
                 h1.meatcheckr-logo
                     -for(var i=0;i<locals.title.length;i++)
                         span= locals.title[i]
+                .meatcheckr-headerillu
             section.meatcheckr-form
                 form
                     label(for="meatcheckr").
                         I've just opened some meat. It's&hellip;
-                    input(type="search" id="meatcheckr" placeholder="I've just opened some...")
+                    input(type="search" id="meatcheckr" placeholder="Dang, I just opened some...")
             footer.meatcheckr-footer(role="contentinfo")
                 p= locals.tagline
         script(src="./static/scripts/meat-suggestions.js")
