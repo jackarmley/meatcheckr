@@ -19,6 +19,7 @@ $pinksteak: #D55663;
 $venison: #272324;
 $baconrind: #FBD3CD;
 $dripping: #fff;
+$butchershopblue: #6EABFF;
 
 // Tie colours to map
 // @type {Map}
@@ -28,7 +29,8 @@ $colours:(
     highlight: $baconrind,
     key: $pinksteak,
     bg: $venison,
-    white: $dripping
+    white: $dripping,
+    blue: $butchershopblue
 );
 
 // Color getter

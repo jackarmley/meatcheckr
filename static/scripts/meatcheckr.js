@@ -14,6 +14,7 @@ function meatcheckr (input,options) {
     // Set some vars, bro
     _self = this;
     _self.input = document.querySelector(input);
+    _self.placeholderText = _self.input.getAttribute('placeholder');
     _self.menuLocation = _self.input.parentNode;
     _self.options = options || {
         data : [
@@ -45,6 +46,16 @@ meatcheckr.prototype.init = function() {
     }
     _self.suggestionsElem = _self.suggestionsContainer( _self.menuLocation );
 
+    // On focus, clear placeholder text
+    _self.input.addEventListener('focus',function(){
+        _self.clearPlaceholder();
+    });
+
+    // On blur, reinstate placeholder text
+    _self.input.addEventListener('blur',function(){
+        _self.reinstatePlaceholder();
+    });
+
     // On keyup, check for matches
     _self.input.addEventListener('keyup',function(){
 
@@ -60,6 +71,16 @@ meatcheckr.prototype.init = function() {
         }
 
     });
+};
+
+// Clear placeholder text
+meatcheckr.prototype.clearPlaceholder = function() {
+    _self.input.setAttribute('placeholder','');
+};
+
+// Reinstate placeholder test
+meatcheckr.prototype.reinstatePlaceholder = function() {
+    _self.input.setAttribute('placeholder',_self.placeholderText);
 };
 
 // Check if the value of the 'input' element matches

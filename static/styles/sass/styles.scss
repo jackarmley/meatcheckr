@@ -6,7 +6,11 @@
 /**
  * Dependancies
  */
+
+// Import neccesary vars,
+// functions and mixins
 @import 'config';
+
 /**
  * League Spartan
  * @src: League of Movable Type
@@ -31,13 +35,25 @@
     box-sizing: border-box;
 }
 html{
-    background-color: getcolor('bg');
+    background:
+        radial-gradient(
+            circle, fade-out( getcolor(white) ,.5) , fade-out( getcolor(white) ,1) 70%
+        )
+        no-repeat center center/80rem 80rem,
+        linear-gradient(
+            to right,
+            getcolor(blue) 50%, getcolor(white) 50%
+        )
+        repeat-x top left/5rem 100%
+        getcolor(blue)
+    ;
     font-size: 62.5%;
 }
 body{
     display: flex;
     width: auto;
     height: 100vh;
+    margin: 0;
     color: getcolor('base');
     font: 400 normal 160%/1.5em getprop('basefont'), sans-serif;
 }
@@ -45,14 +61,15 @@ p{
     margin: 0 0 1em;
 }
 
-
-
 /**
- * Meatcheckr component styles
+ * Meatcheckr component
  */
 .meatcheckr{
     width: 50rem;
     margin: auto;
+    /**
+     * Heading
+     */
     &-header{
         position: relative;
         &:before,
@@ -130,36 +147,121 @@ p{
                     $i:$i+1;
                 }
         }
+    /**
+     * Input form
+     */
     &-form{
-        padding: 2rem;
+        position: relative;
+        padding: 2rem 2rem .1rem;
+        border: .5rem solid getcolor(key);
+        border-radius: 1rem;
         background-color: getcolor(light);
-        label{
-            display: none;
+        form{
+            margin-bottom: 2rem;
         }
-        input{
-            display: block;
-            width: 100%;
-            margin: 0;
-            padding: 2rem;
-            border: none;
-            font-size: 1.5em;
-            font-family: getprop(strongfont);
-            -webkit-appearance: none;
-            &:focus{
-                outline: none;
+            label{
+                display: none;
             }
-        }
-        ::-webkit-input-placeholder{
-            color: getcolor(base);
-        }
+            input{
+                display: block;
+                width: 100%;
+                margin: 0;
+                padding: 2rem;
+                border: .1rem solid darken(getcolor(light),10%);
+                font-size: 1.5em;
+                font-family: getprop(strongfont);
+                -webkit-appearance: none;
+                &:focus{
+                    outline: none;
+                }
+            }
+            ::-webkit-input-placeholder{
+                color: getcolor(base);
+            }
     }
+    /**
+     * Suggestions list
+     */
     &-suggestions{
+        position: relative;
         margin: 0;
         padding: 0;
         list-style: none;
         &-item{
-            padding: 2rem;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            padding: 2rem 3rem;
             background-color: getcolor(key);
+            text-align: center;
+            > :last-child{
+                margin-bottom: 0;
+            }
+            /**
+             * Connector arrow
+             * for first item in the list
+             */
+            &:first-of-type{
+                &:before{
+                    content:' ';
+                    position: absolute;
+                    top: -4rem;
+                    left: 50%;
+                    width: 0;
+                    height: 0;
+                    margin-left: -2rem;
+                    border: 2rem solid transparent;
+                    border-bottom-color: getcolor(key);
+                }
+            }
+            /**
+             * Inner elements
+             */
+            &-heading{
+                margin: 0 0 .5em;
+                color: getcolor(white);
+                font-size: 2.5em;
+                line-height: 1.3em;
+                letter-spacing: .05em;
+                text-transform: uppercase;
+                &:before,
+                &:after{
+                    content:' ';
+                    display: block;
+                    width: 90%;
+                    max-width: 2em;
+                    height: .5rem;
+                    margin: auto;
+                    background-color: darken( getcolor(key),10% );
+                }
+                &:before{
+                    margin-bottom: .25em;
+                }
+            }
+            span{
+                display: block;
+                margin-bottom: .5em;
+                font-size: 1.2em;
+                text-transform: uppercase;
+            }
+        }
+    }
+    /**
+     * Footer
+     */
+    &-footer{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 2rem;
+        background-color: getcolor(blue);
+        text-align: center;
+        p{
+            margin: 0;
+            color: getcolor(white);
+            text-shadow: 0 .3rem darken( getcolor(blue),10% );
         }
     }
 }
