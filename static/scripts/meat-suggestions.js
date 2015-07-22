@@ -11,7 +11,7 @@ var suggestions = [
     },
     {
         meat : 'steak',
-        daysLeft : 2,
+        daysLeft : 3,
         message : 'Steak\'s for eating, not for leaving. Man up.'
     },
     {
@@ -21,7 +21,7 @@ var suggestions = [
     },
     {
         meat : 'sausages',
-        daysLeft : 4,
+        daysLeft : 2,
         message : 'Get your sizzle on quick smart.'
 
     },
@@ -37,17 +37,17 @@ var suggestions = [
     },
     {
         meat : 'hotdogs',
-        daysLeft : 30,
-        message : 'They in a jar? Forgetaboutit. You\'re fine.'
+        daysLeft : 7,
+        message : 'Get a bun and some mustard, stat.'
     },
     {
         meat : 'minced beef',
-        daysLeft : 3,
+        daysLeft : 1,
         message : 'Tacos man, tacos! Make them. Now.'
     },
     {
         meat : 'burgers',
-        daysLeft : 3,
+        daysLeft : 1,
         message : 'Get a beer and a bun and cook those thangs.'
     }
 ];

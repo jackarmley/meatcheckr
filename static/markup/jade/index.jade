@@ -18,7 +18,11 @@ html
                         I've just opened some meat. It's&hellip;
                     input(type="search" id="meatcheckr" placeholder="Dang, I just opened some...")
             footer.meatcheckr-footer(role="contentinfo")
-                p= locals.tagline
+                p
+                    != locals.tagline
+                    | . Information (roughly!) from
+                    | &nbsp;
+                    a(href="http://www.foodsafety.gov/keep/charts/storagetimes.html") foodsafety.gov
         script(src="./static/scripts/meat-suggestions.js")
         script(src="./static/scripts/meatcheckr.js")
         script(src="./static/scripts/app.js")
